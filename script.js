@@ -1,11 +1,52 @@
-// Constantes e configurações
+// Configurações
 const CONFIG = {
     MAX_HISTORY_ITEMS: 10,
     STORAGE_KEY: 'folhasA4_historico',
+    THEME_KEY: 'preferredTheme',
     DECIMAL_PLACES: 2
 };
 
-// Classes para gerenciamento de dados
+// Classe para gerenciar o tema
+class ThemeManager {
+    constructor() {
+        this.themeToggle = document.getElementById('themeToggle');
+        this.body = document.body;
+        this.setupTheme();
+    }
+
+    setupTheme() {
+        // Carrega tema salvo ou usa preferência do sistema
+        const savedTheme = localStorage.getItem(CONFIG.THEME_KEY);
+        if (savedTheme) {
+            this.setTheme(savedTheme);
+        } else {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            this.setTheme(prefersDark ? 'dark-theme' : 'light-theme');
+        }
+
+        // Adiciona listener para o botão de tema
+        this.themeToggle.addEventListener('click', () => {
+            const newTheme = this.body.classList.contains('light-theme') ? 
+                'dark-theme' : 'light-theme';
+            this.setTheme(newTheme);
+        });
+
+        // Observa mudanças na preferência do sistema
+        window.matchMedia('(prefers-color-scheme: dark)')
+            .addEventListener('change', e => {
+                const newTheme = e.matches ? 'dark-theme' : 'light-theme';
+                this.setTheme(newTheme);
+            });
+    }
+
+    setTheme(theme) {
+        this.body.classList.remove('light-theme', 'dark-theme');
+        this.body.classList.add(theme);
+        localStorage.setItem(CONFIG.THEME_KEY, theme);
+    }
+}
+
+// Classe para resultados de cálculo
 class CalculationResult {
     constructor(blocos, folhasPorBloco, folhasPorA4, folhasA4) {
         this.blocos = blocos;
