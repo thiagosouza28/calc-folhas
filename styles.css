@@ -1,0 +1,129 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f1f5f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container principal */
+.container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #4e73df;
+    font-weight: 600;
+}
+
+/* Labels e Inputs */
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    display: block;
+    margin: 12px 0 6px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background-color: #f9fafb;
+    color: #333;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #4e73df;
+    background-color: #fff;
+    outline: none;
+}
+
+/* Botão */
+button {
+    background-color: #4e73df;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2e59d9;
+}
+
+/* Resultado */
+h2 {
+    font-size: 20px;
+    color: #4e73df;
+    margin-top: 30px;
+}
+
+p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+/* Histórico */
+h3 {
+    font-size: 18px;
+    color: #4e73df;
+    margin-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+li {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+/* Efeitos de transição */
+input, button {
+    transition: transform 0.2s ease-in-out;
+}
+
+input:focus, button:hover {
+    transform: scale(1.05);
+}
