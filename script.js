@@ -26,8 +26,12 @@ class ThemeManager {
 
         // Adiciona listener para o botão de tema
         this.themeToggle.addEventListener('click', () => {
-            const newTheme = this.body.classList.contains('light-theme') ? 
-                'dark-theme' : 'light-theme';
+            const currentTheme = this.body.classList.contains('light-theme') ? 
+                'light-theme' : this.body.classList.contains('dark-theme') ? 
+                'dark-theme' : 'bw-theme';
+            const newTheme = currentTheme === 'light-theme' ? 
+                'dark-theme' : currentTheme === 'dark-theme' ? 
+                'bw-theme' : 'light-theme';
             this.setTheme(newTheme);
         });
 
@@ -40,7 +44,7 @@ class ThemeManager {
     }
 
     setTheme(theme) {
-        this.body.classList.remove('light-theme', 'dark-theme');
+        this.body.classList.remove('light-theme', 'dark-theme', 'bw-theme');
         this.body.classList.add(theme);
         localStorage.setItem(CONFIG.THEME_KEY, theme);
     }
@@ -193,7 +197,7 @@ class A4Calculator {
     displayResult(result) {
         const resultElement = document.getElementById('resultado');
         if (resultElement) {
-            resultElement.innerHTML = `
+            resultElement.innerHTML = ` 
                 <div class="result-card">
                     <h3>Resultado</h3>
                     <p>Você vai precisar de <strong>${result.folhasA4}</strong> folhas A4.</p>
