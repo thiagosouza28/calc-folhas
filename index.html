@@ -5,29 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Folhas A4</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="light-theme">
+    <div class="theme-toggle">
+        <button id="themeToggle" aria-label="Alternar tema">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
     <div class="container">
         <h1>Calculadora de Folhas A4</h1>
         
-        <label for="blocos">Número de Blocos:</label>
-        <input type="number" id="blocos" value="">
+        <form id="calculatorForm" class="form-group">
+            <div class="input-group">
+                <label for="blocos">Número de Blocos:</label>
+                <input type="number" id="blocos" min="1" required>
+            </div>
 
-        <label for="folhasPorBloco">Número de Folhas por Bloco:</label>
-        <input type="number" id="folhasPorBloco" value="">
+            <div class="input-group">
+                <label for="folhasPorBloco">Número de Folhas por Bloco:</label>
+                <input type="number" id="folhasPorBloco" min="1" required>
+            </div>
 
-        <label for="folhasPorA4">Número de Folhas por A4:</label>
-        <input type="number" id="folhasPorA4" value="">
+            <div class="input-group">
+                <label for="folhasPorA4">Número de Folhas por A4:</label>
+                <input type="number" id="folhasPorA4" min="1" required>
+            </div>
 
-        <button onclick="calcularFolhasA4()">Calcular</button>
+            <button type="submit" class="btn-calculate">
+                <i class="fas fa-calculator"></i>
+                Calcular
+            </button>
+        </form>
 
-        <h2>Resultado</h2>
-        <p id="resultado">Você vai precisar de 0 folhas A4.</p>
+        <div class="result-section">
+            <h2>Resultado</h2>
+            <div id="resultado" class="result-card">
+                Você vai precisar de 0 folhas A4.
+            </div>
+        </div>
 
-        <h3>Histórico de Cálculos</h3>
-        <ul id="historico"></ul>
+        <div class="history-section">
+            <div class="history-header">
+                <h3>Histórico de Cálculos</h3>
+                <button id="clearHistory" class="btn-clear">
+                    <i class="fas fa-trash"></i>
+                    Limpar Histórico
+                </button>
+            </div>
+            <ul id="historico" class="history-list"></ul>
+        </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
