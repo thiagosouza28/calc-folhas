@@ -4,10 +4,10 @@
 
 :root {
     /* Cores - Tema Claro */
-    --light-bg: #f8fafc;
+    --light-bg: #f0f9ff;
     --light-card-bg: #ffffff;
-    --light-text: #1e293b;
-    --light-text-secondary: #64748b;
+    --light-text: #0f172a;
+    --light-text-secondary: #475569;
     --light-border: #e2e8f0;
     --light-input-bg: #f1f5f9;
     --light-hover: #e2e8f0;
@@ -16,7 +16,7 @@
     --light-shadow: rgba(51, 65, 85, 0.1);
     
     /* Cores - Tema Escuro */
-    --dark-bg: #0f172a;
+    --dark-bg: #0b1120;
     --dark-card-bg: #1e293b;
     --dark-text: #f1f5f9;
     --dark-text-secondary: #94a3b8;
@@ -37,7 +37,7 @@
     /* Border Radius */
     --radius-sm: 0.375rem;
     --radius-md: 0.5rem;
-    --radius-lg: 1rem;
+    --radius-lg: 0.75rem;
     --radius-full: 9999px;
 }
 
@@ -97,28 +97,28 @@ body.dark-theme {
     border: none;
     border-radius: var(--radius-full);
     cursor: pointer;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .theme-toggle button:hover {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-2px) scale(1.1);
 }
 
 .light-theme .theme-toggle button {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     color: var(--light-text);
     box-shadow: 
-        0 4px 12px var(--light-shadow),
+        0 6px 16px var(--light-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .dark-theme .theme-toggle button {
-    background-color: rgba(30, 41, 59, 0.8);
+    background-color: rgba(30, 41, 59, 0.9);
     color: var(--dark-text);
     box-shadow: 
-        0 4px 12px var(--dark-shadow),
+        0 6px 16px var(--dark-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
@@ -131,8 +131,8 @@ body.dark-theme {
     margin: var(--spacing-xl) auto;
     padding: var(--spacing-xl);
     border-radius: var(--radius-lg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     animation: slideUp 0.6s ease-out;
 }
@@ -140,19 +140,19 @@ body.dark-theme {
 .light-theme .container {
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 
-        0 8px 32px var(--light-shadow),
+        0 12px 40px var(--light-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
 .dark-theme .container {
     background-color: rgba(30, 41, 59, 0.9);
     box-shadow: 
-        0 8px 32px var(--dark-shadow),
+        0 12px 40px var(--dark-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .container:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
 }
 
 /* ==========================================================================
@@ -194,6 +194,10 @@ input {
     color: var(--dark-text);
 }
 
+input:hover {
+    border-color: var(--light-border);
+}
+
 input:focus {
     outline: none;
     transform: translateY(-1px);
@@ -215,7 +219,7 @@ input:focus {
 
 .btn-calculate {
     width: 100%;
-    padding: 0.875rem;
+    padding: 1rem;
     border: none;
     border-radius: var(--radius-md);
     font-weight: 600;
@@ -237,7 +241,7 @@ input:focus {
 }
 
 .btn-calculate:hover {
-    transform: translateY(-2px);
+    transform: translateY(-3px);
 }
 
 .btn-calculate::after {
@@ -250,10 +254,10 @@ input:focus {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.2),
+        rgba(255, 255, 255, 0.3),
         transparent
     );
-    transition: 0.5s;
+    transition: 0.6s;
 }
 
 .btn-calculate:hover::after {
@@ -314,8 +318,8 @@ input:focus {
     right: var(--spacing-md);
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     animation: slideIn 0.4s ease-out;
     z-index: 1000;
 }
@@ -323,23 +327,23 @@ input:focus {
 .light-theme .message.success {
     background-color: rgba(16, 185, 129, 0.95);
     color: white;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.2);
 }
 
 .dark-theme .message.success {
     background-color: rgba(52, 211, 153, 0.95);
     color: black;
-    box-shadow: 0 4px 12px rgba(52, 211, 153, 0.2);
+    box-shadow: 0 6px 16px rgba(52, 211, 153, 0.2);
 }
 
 .light-theme .message.error {
     background-color: rgba(239, 68, 68, 0.95);
     color: white;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.2);
 }
 
 .dark-theme .message.error {
     background-color: rgba(248, 113, 113, 0.95);
     color: black;
-    box-shadow: 0 4px 12px rgba(248, 113, 113, 0.2);
+    box-shadow: 0 6px 16px rgba(248, 113, 113, 0.2);
 }
