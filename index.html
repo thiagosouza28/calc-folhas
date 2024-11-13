@@ -1,63 +1,162 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Folhas A4</title>
+    <meta name="description" content="Calculadora para determinar o número necessário de folhas A4 baseado em blocos e folhas">
+    <meta name="theme-color" content="#ffffff">
+    <title>Calculadora de Folhas A4 | Ferramenta de Cálculo</title>
+    
+    <!-- Preload dos recursos críticos -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="preload" href="styles.css" as="style">
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="light-theme">
-    <div class="theme-toggle">
-        <button id="themeToggle" aria-label="Alternar tema">
-            <i class="fas fa-sun"></i> <!-- Ícone do sol para o tema claro -->
-            <i class="fas fa-moon"></i> <!-- Ícone da lua para o tema escuro -->
-            <i class="fas fa-circle"></i> <!-- Ícone para o tema preto e branco (pode ser alterado) -->
-        </button>
-    </div>
-    <div class="container">
+    <header class="app-header">
+        <!-- Skip link para acessibilidade -->
+        <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+        
+        <div class="theme-toggle" role="toolbar" aria-label="Seleção de tema">
+            <button id="themeToggle" class="theme-button" aria-label="Alternar tema">
+                <span class="theme-icon light" aria-hidden="true">
+                    <i class="fas fa-sun" title="Tema Claro"></i>
+                </span>
+                <span class="theme-icon dark" aria-hidden="true">
+                    <i class="fas fa-moon" title="Tema Escuro"></i>
+                </span>
+                <span class="theme-icon contrast" aria-hidden="true">
+                    <i class="fas fa-circle" title="Alto Contraste"></i>
+                </span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content" class="container">
         <h1>Calculadora de Folhas A4</h1>
         
-        <form id="calculatorForm" class="form-group">
-            <div class="input-group">
-                <label for="blocos">Número de Blocos:</label>
-                <input type="number" id="blocos" min="1" required>
+        <section class="calculator-section" aria-labelledby="calculator-title">
+            <h2 id="calculator-title" class="visually-hidden">Formulário de Cálculo</h2>
+            
+            <form id="calculatorForm" class="form-group" novalidate>
+                <div class="input-group">
+                    <label for="blocos">Número de Blocos</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="blocos" 
+                            name="blocos"
+                            min="1" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="blocos-help"
+                        >
+                        <small id="blocos-help" class="help-text">Digite a quantidade de blocos</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="folhasPorBloco">Número de Folhas por Bloco</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="folhasPorBloco" 
+                            name="folhasPorBloco"
+                            min="1" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="folhasBloco-help"
+                        >
+                        <small id="folhasBloco-help" class="help-text">Digite quantas folhas há em cada bloco</small>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="folhasPorA4">Número de Folhas por A4</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="folhasPorA4" 
+                            name="folhasPorA4"
+                            min="1" 
+                            required 
+                            aria-required="true"
+                            aria-describedby="folhasA4-help"
+                        >
+                        <small id="folhasA4-help" class="help-text">Digite quantas folhas cabem em uma A4</small>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn-calculate" aria-label="Calcular quantidade de folhas">
+                        <i class="fas fa-calculator" aria-hidden="true"></i>
+                        Calcular
+                    </button>
+                    <button type="reset" class="btn-reset" aria-label="Limpar formulário">
+                        <i class="fas fa-undo" aria-hidden="true"></i>
+                        Limpar
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <section class="result-section" aria-labelledby="result-title">
+            <h2 id="result-title">Resultado</h2>
+            <div id="resultado" class="result-card" role="status" aria-live="polite">
+                <div class="result-content">
+                    <span class="result-icon">
+                        <i class="fas fa-file-alt" aria-hidden="true"></i>
+                    </span>
+                    <p>Você vai precisar de <strong>0</strong> folhas A4.</p>
+                </div>
+                <div class="result-details" aria-hidden="true">
+                    <small>Último cálculo realizado: <time id="lastCalculation">Nenhum cálculo ainda</time></small>
+                </div>
             </div>
+        </section>
 
-            <div class="input-group">
-                <label for="folhasPorBloco">Número de Folhas por Bloco:</label>
-                <input type="number" id="folhasPorBloco" min="1" required>
-            </div>
-
-            <div class="input-group">
-                <label for="folhasPorA4">Número de Folhas por A4:</label>
-                <input type="number" id="folhasPorA4" min="1" required>
-            </div>
-
-            <button type="submit" class="btn-calculate">
-                <i class="fas fa-calculator"></i>
-                Calcular
-            </button>
-        </form>
-
-        <div class="result-section">
-            <h2>Resultado</h2>
-            <div id="resultado" class="result-card">
-                Você vai precisar de 0 folhas A4.
-            </div>
-        </div>
-
-        <div class="history-section">
+        <section class="history-section" aria-labelledby="history-title">
             <div class="history-header">
-                <h3>Histórico de Cálculos</h3>
-                <button id="clearHistory" class="btn-clear">
-                    <i class="fas fa-trash"></i>
+                <h2 id="history-title">Histórico de Cálculos</h2>
+                <button id="clearHistory" class="btn-clear" aria-label="Limpar todo o histórico">
+                    <i class="fas fa-trash" aria-hidden="true"></i>
                     Limpar Histórico
                 </button>
             </div>
-            <ul id="historico" class="history-list"></ul>
-        </div>
+            
+            <div class="history-content">
+                <ul id="historico" class="history-list" role="log" aria-label="Histórico de cálculos realizados"></ul>
+                <div id="emptyHistory" class="empty-state" aria-hidden="true">
+                    <i class="fas fa-history"></i>
+                    <p>Nenhum cálculo realizado ainda</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; <span id="currentYear">2024</span> Calculadora de Folhas A4. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Tooltip de ajuda -->
+    <div id="tooltip" class="tooltip" role="tooltip" hidden>
+        <div class="tooltip-content"></div>
+        <div class="tooltip-arrow"></div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Scripts -->
+    <script src="script.js" defer></script>
+    <noscript>
+        <div class="noscript-warning">
+            Esta aplicação requer JavaScript para funcionar corretamente.
+            Por favor, habilite JavaScript no seu navegador.
+        </div>
+    </noscript>
 </body>
 </html>
