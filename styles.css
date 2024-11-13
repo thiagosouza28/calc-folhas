@@ -11,10 +11,10 @@
     --light-border: #e2e8f0;
     --light-input-bg: #f1f5f9;
     --light-hover: #e2e8f0;
-    --light-primary: #4338ca;
-    --light-primary-hover: #3730a3;
+    --light-primary: #4f46e5;
+    --light-primary-hover: #4338ca;
+    --light-accent: #06b6d4;
     --light-shadow: rgba(51, 65, 85, 0.1);
-    --light-gradient: linear-gradient(to right, #4338ca, #6366f1);
     
     /* Cores - Tema Escuro */
     --dark-bg: #0b1120;
@@ -26,8 +26,8 @@
     --dark-hover: #334155;
     --dark-primary: #6366f1;
     --dark-primary-hover: #4f46e5;
+    --dark-accent: #06b6d4;
     --dark-shadow: rgba(0, 0, 0, 0.4);
-    --dark-gradient: linear-gradient(to right, #6366f1, #4338ca);
 
     /* Espaçamento */
     --spacing-xs: 0.25rem;
@@ -70,16 +70,16 @@ body.light-theme {
     background-color: var(--light-bg);
     color: var(--light-text);
     background-image: 
-        radial-gradient(at 100% 0%, rgba(79, 70, 229, 0.1) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(79, 70, 229, 0.1) 0px, transparent 50%);
+        radial-gradient(at 100% 0%, rgba(79, 70, 229, 0.05) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(79, 70, 229, 0.05) 0px, transparent 50%);
 }
 
 body.dark-theme {
     background-color: var(--dark-bg);
     color: var(--dark-text);
     background-image: 
-        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.15) 0px, transparent 50%);
+        radial-gradient(at 100% 0%, rgba(99, 102, 241, 0.1) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(99, 102, 241, 0.1) 0px, transparent 50%);
 }
 
 /* ==========================================================================
@@ -110,7 +110,7 @@ body.dark-theme {
 
 .light-theme .theme-toggle button {
     background-color: rgba(255, 255, 255, 0.9);
-    color: var(--light-text);
+    color: var(--light-primary);
     box-shadow: 
         0 8px 20px var(--light-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -118,7 +118,7 @@ body.dark-theme {
 
 .dark-theme .theme-toggle button {
     background-color: rgba(30, 41, 59, 0.9);
-    color: var(--dark-text);
+    color: var(--dark-primary);
     box-shadow: 
         0 8px 20px var(--dark-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -140,23 +140,17 @@ body.dark-theme {
 }
 
 .light-theme .container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: var(--light-card-bg);
     box-shadow: 
         0 16px 48px var(--light-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-    background-image: var(--light-gradient);
-    background-size: 200% 200%;
-    animation: gradientShift 10s ease infinite;
 }
 
 .dark-theme .container {
-    background-color: rgba(30, 41, 59, 0.9);
+    background-color: var(--dark-card-bg);
     box-shadow: 
         0 16px 48px var(--dark-shadow),
         inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-    background-image: var(--dark-gradient);
-    background-size: 200% 200%;
-    animation: gradientShift 10s ease infinite;
 }
 
 .container:hover {
@@ -183,6 +177,14 @@ label {
     transition: color 0.3s ease;
 }
 
+.light-theme label {
+    color: var(--light-text-secondary);
+}
+
+.dark-theme label {
+    color: var(--dark-text-secondary);
+}
+
 input {
     width: 100%;
     padding: 0.875rem;
@@ -195,25 +197,24 @@ input {
 .light-theme input {
     background-color: var(--light-input-bg);
     color: var(--light-text);
+    border-color: var(--light-border);
 }
 
 .dark-theme input {
     background-color: var(--dark-input-bg);
     color: var(--dark-text);
+    border-color: var(--dark-border);
 }
 
 input:hover {
-    border-color: var(--light-border);
+    border-color: var(--light-accent);
 }
 
 input:focus {
     outline: none;
     transform: translateY(-1px);
-}
-
-.light-theme input:focus {
     border-color: var(--light-primary);
-    box-shadow: 0 0 0 3px rgba(67, 56, 202, 0.15);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }
 
 .dark-theme input:focus {
@@ -236,21 +237,21 @@ input:focus {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
-    background-image: var(--light-gradient);
-    background-size: 200% 200%;
-    animation: gradientShift 8s ease infinite;
-}
-
-.light-theme .btn-calculate {
+    background-color: var(--light-primary);
     color: white;
 }
 
 .dark-theme .btn-calculate {
-    color: white;
+    background-color: var(--dark-primary);
 }
 
 .btn-calculate:hover {
     transform: translateY(-4px);
+    background-color: var(--light-primary-hover);
+}
+
+.dark-theme .btn-calculate:hover {
+    background-color: var(--dark-primary-hover);
 }
 
 .btn-calculate:active {
@@ -278,18 +279,6 @@ input:focus {
     }
     to {
         opacity: 1;
-    }
-}
-
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
     }
 }
 
